@@ -28,6 +28,16 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnectionStri
 
 var app = builder.Build();
 
+
+// New Config
+
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
+    RequestPath = new PathString("/wwwroot")
+});
+
 // configuring app using startup
 startup.Configure(app, builder.Environment); 
 
@@ -42,14 +52,14 @@ if (app.Environment.IsDevelopment())
 }
 
 // configuring static files in the project
-app.UseStaticFiles();
-app.UseStaticFiles(new StaticFileOptions()
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
-    RequestPath = new PathString("/wwwroot")
-});
+// app.UseStaticFiles();
+// app.UseStaticFiles(new StaticFileOptions()
+// {
+//     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
+//     RequestPath = new PathString("/wwwroot")
+// });
 
 // Mapping HTTP requests to controller actions
-app.MapControllers();
+// app.MapControllers();
 
 app.Run();

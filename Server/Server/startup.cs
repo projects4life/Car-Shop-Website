@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +28,7 @@ namespace Server.Startup
                 {
                     builder.AllowAnyHeader()
                            .AllowAnyMethod()
-                           .WithOrigins(configuredValues.GetClient(), configuredValues.GetServer(), "http://frontend", "http://localhost");
+                           .WithOrigins(configuredValues.GetClient(), configuredValues.GetServer(), "http://frontend", "http://localhost","http://34.125.187.141");
                 });
             });
 
@@ -61,13 +62,14 @@ namespace Server.Startup
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors("EnableCORS");
-
-            app.UseStaticFiles();
+            // app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors("EnableCORS");
 
-            app.UseHttpsRedirection();
+
+
+            // app.UseHttpsRedirection();
 
             app.UseAuthentication();
 
