@@ -26,9 +26,14 @@ namespace Server.Startup
             {
                 options.AddPolicy("EnableCORS", builder =>
                 {
-                    builder.AllowAnyHeader()
+                    // builder.AllowAnyHeader()
+                    //        .AllowAnyMethod()
+                    //        .WithOrigins(configuredValues.GetClient(), configuredValues.GetServer(), "http://frontend", "http://localhost","http://34.125.187.141");
+                    // //
+                builder.AllowAnyHeader()
                            .AllowAnyMethod()
-                           .WithOrigins(configuredValues.GetClient(), configuredValues.GetServer(), "http://frontend", "http://localhost","http://34.125.187.141");
+                           .AllowAnyOrigin();
+
                 });
             });
 
